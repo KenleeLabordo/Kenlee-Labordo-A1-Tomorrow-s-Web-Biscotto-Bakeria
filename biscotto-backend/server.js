@@ -24,14 +24,19 @@ const app = express();
 // Connect to MongoDB
 connectDB();
 
-// CORS Configuration - Wildcard for all localhost ports
+// CORS Configuration - Updated for Vercel deployment
 app.use(cors({
   origin: function(origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     
-    // Allow localhost on any port
+    // Allow localhost on any port (for development)
     if (origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:')) {
+      return callback(null, true);
+    }
+    
+    // Allow Vercel deployment URLs
+    if (origin.includes('.vercel.app')) {
       return callback(null, true);
     }
     
@@ -89,10 +94,15 @@ app.use((req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
 
-// Start server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-  console.log(`📍 Environment: ${process.env.NODE_ENV || 'development'}`);
-  console.log(`🌐 CORS enabled for: All localhost ports`);
-});
+// Start server ONLY in development (not on Vercel)
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+    console.log(`📍 Environment: ${process.env.NODE_ENV || 'development'}`);
+    console.log(`🌐 CORS enabled for: All localhost ports`);
+  });
+}
+
+// Export for Vercel serverless
+export default app;
