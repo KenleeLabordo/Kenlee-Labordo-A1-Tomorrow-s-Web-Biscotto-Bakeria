@@ -1,5 +1,30 @@
 {
-     "buildCommand": "cd biscotto-bakeria && npm install && npm run build",
-     "outputDirectory": "biscotto-bakeria/build",
-     "framework": "create-react-app"
-   }
+  "version": 2,
+  "builds": [
+    {
+      "src": "biscotto-bakeria/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    },
+    {
+      "src": "biscotto-backend/**/*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "biscotto-backend/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "biscotto-bakeria/$1"
+    }
+  ],
+  "env": {
+    "MONGODB_URI": "@mongodb_uri",
+    "JWT_SECRET": "@jwt_secret"
+  }
+}
