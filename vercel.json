@@ -1,4 +1,6 @@
 {
+  "buildCommand": "cd biscotto-bakeria && npm install && npm run build",
+  "outputDirectory": "biscotto-bakeria/dist",
   "rewrites": [
     {
       "source": "/api/(.*)",
