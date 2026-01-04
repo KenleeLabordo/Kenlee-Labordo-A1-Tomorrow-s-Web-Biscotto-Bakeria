@@ -1,0 +1,7 @@
+{
+  "name": "Biscotto Bakeria",
+  "description": "A modern, responsive bakery homepage featuring a product carousel and customer testimonials, built with React and Tailwind CSS to showcase delicious, freshly baked goods.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
