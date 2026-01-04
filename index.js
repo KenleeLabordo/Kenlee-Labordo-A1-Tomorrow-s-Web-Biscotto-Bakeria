@@ -3,7 +3,8 @@
 
 // Import your existing backend
 // Change 'server' to match your actual file name (server.js, app.js, index.js, etc.)
-const app = require('../biscotto-backend/server');
+export { default } from '../biscotto-backend/server.js';
+
 
 // That's it! Just export it for Vercel
 module.exports = app;
