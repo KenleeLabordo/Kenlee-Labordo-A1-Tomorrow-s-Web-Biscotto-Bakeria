@@ -7,24 +7,12 @@
       "config": {
         "distDir": "build"
       }
-    },
-    {
-      "src": "biscotto-backend/**/*.js",
-      "use": "@vercel/node"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "biscotto-backend/index.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "biscotto-bakeria/$1"
+      "source": "/api/(.*)",
+      "destination": "/api"
     }
-  ],
-  "env": {
-    "MONGODB_URI": "@mongodb_uri",
-    "JWT_SECRET": "@jwt_secret"
-  }
+  ]
 }
