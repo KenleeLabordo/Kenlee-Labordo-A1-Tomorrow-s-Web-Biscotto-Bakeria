@@ -1,8 +1,0 @@
-[phases.setup]
-nixPkgs = ["nodejs_20", "npm"]
-
-[phases.build]
-cmds = ["cd biscotto-backend && npm install"]
-
-[start]
-cmd = "cd biscotto-backend && npm start"
