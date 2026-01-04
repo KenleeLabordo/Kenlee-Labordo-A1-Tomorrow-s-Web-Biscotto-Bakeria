@@ -1,14 +1,5 @@
 {
-  "buildCommand": "cd biscotto-bakeria && npm install && npm run build",
-  "outputDirectory": "biscotto-bakeria/dist",
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
-}
+     "buildCommand": "cd biscotto-bakeria && npm install && npm run build",
+     "outputDirectory": "biscotto-bakeria/build",
+     "framework": "create-react-app"
+   }
