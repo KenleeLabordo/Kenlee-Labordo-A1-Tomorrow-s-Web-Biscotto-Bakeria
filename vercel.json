@@ -1,18 +1,15 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "biscotto-bakeria/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "build"
-      }
-    }
-  ],
+  "buildCommand": "cd biscotto-bakeria && npm install && npm run build",
+  "outputDirectory": "biscotto-bakeria/dist",
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/api"
+      "destination": "/api/index"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
